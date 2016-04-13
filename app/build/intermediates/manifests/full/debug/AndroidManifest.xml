@@ -29,9 +29,6 @@
         <activity android:name="edu.gvsu.cis.waltr.typemaster.WordActivity" />
         <activity android:name="edu.gvsu.cis.waltr.typemaster.PracticeActivity" />
         <activity android:name="edu.gvsu.cis.waltr.typemaster.ScoreActivity" />
-        <activity
-            android:name="android.support.v7.widget.TestActivity"
-            android:label="RecyclerViewTestActivity" />
     </application>
 
 </manifest>
