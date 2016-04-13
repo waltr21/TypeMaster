@@ -25,7 +25,7 @@ public class Main extends AppCompatActivity {
         wordCard = (CardView) findViewById(R.id.word_card);
         practiceCard = (CardView) findViewById(R.id.practice_card);
         scoreCard = (CardView) findViewById(R.id.score_card);
-//thing
+//thing 2
         minuteCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View press) {
