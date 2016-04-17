@@ -9,5 +9,8 @@ public class ScoreActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score);
+
+        /*startActivityForResult(Games.Leaderboards.getLeaderboardIntent(mGoogleApiClient,
+                LEADERBOARD_ID), CgkI7ryyz50REAIQAQ);*/
     }
 }
