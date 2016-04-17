@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Tippen Meister</string>
+    <string name="minute">Minuten zu gewinnen.</string>
+    <string name="subMinute">Tippe viele Wörter in ein minuten.</string>
+    <string name="howMany">Wie viele Wörter?</string>
+
+</resources>

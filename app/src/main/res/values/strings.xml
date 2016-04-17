@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">TypeMaster</string>
+    <string name="minute">Minute To Win It!</string>
+    <string name="subMinute">One minute to type as many words as you can.</string>
+    <string name="howMany">How Many Words?</string>
+
 </resources>
