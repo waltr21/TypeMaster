@@ -2,5 +2,9 @@
     {
         "merged": "/Users/RyanWalt/AndroidStudioProjects/TypeMaster/app/build/intermediates/res/merged/debug/mipmap-xxxhdpi-v4/ic_launcher.png",
         "source": "/Users/RyanWalt/AndroidStudioProjects/TypeMaster/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/hunterhubers/AndroidStudioProjects/TypeMaster/app/build/intermediates/res/merged/debug/mipmap-xxxhdpi-v4/ic_launcher.png",
+        "source": "/Users/hunterhubers/AndroidStudioProjects/TypeMaster/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png"
     }
 ]
