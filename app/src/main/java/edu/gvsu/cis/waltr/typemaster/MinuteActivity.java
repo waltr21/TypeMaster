@@ -74,7 +74,7 @@ public class MinuteActivity extends AppCompatActivity implements Callback<List<W
             for (Word w : words) {
                 wordString = w.word;
             }
-        randomWord.setText(wordString);
+        randomWord.setText(wordString.toUpperCase());
     }
 
     @Override
