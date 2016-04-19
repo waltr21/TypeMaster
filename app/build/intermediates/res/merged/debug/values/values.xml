@@ -224,9 +224,13 @@
     <string name="abc_shareactionprovider_share_with_application">Share with %s</string>
     <string name="abc_toolbar_collapse_description">Collapse</string>
     <string name="app_name">TypeMaster</string>
+    <string name="highScoreSub">View the best times of you and your friends.</string>
+    <string name="high_score">High Score</string>
     <string name="howMany">How Many Words?</string>
     <string name="minute">Minute To Win It!</string>
     <string name="practice">Practice</string>
+    <string name="practice_sub">Practice letters that you have trouble typing with. No time is recorded.</string>
+    <string name="sign_in">Login</string>
     <string name="status_bar_notification_info_overflow">999+</string>
     <string name="subMinute">One minute to type as many words as you can.</string>
     <string name="subhowMany">You choose how many words you want to type. We keep track of the time.</string>

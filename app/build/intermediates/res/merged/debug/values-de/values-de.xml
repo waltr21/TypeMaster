@@ -20,9 +20,13 @@
     <string msgid="7165123711973476752" name="abc_shareactionprovider_share_with_application">"Freigeben für %s"</string>
     <string msgid="1603543279005712093" name="abc_toolbar_collapse_description">"Minimieren"</string>
     <string name="app_name">Tippen Meister</string>
+    <string name="highScoreSub">Sehen die beste Zeit.</string>
+    <string name="high_score">Hoch Treffen</string>
     <string name="howMany">Wie viele Wörter?</string>
     <string name="minute">Minuten zu gewinnen.</string>
     <string name="practice">üben</string>
+    <string name="practice_sub">üben schwer Worte für eine bessere Zeit. Keine zeit Grenze.</string>
+    <string name="sign_in">Login</string>
     <string msgid="2869576371154716097" name="status_bar_notification_info_overflow">"999+"</string>
     <string name="subMinute">Tippe viele Wörter in ein minuten.</string>
     <string name="subhowMany">Sie wählen wie viele Wörter Sie Tippen. Wir verfolgen Zeit.</string>
