@@ -3,6 +3,8 @@ package edu.gvsu.cis.waltr.typemaster;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
+import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -19,9 +21,9 @@ import retrofit.client.Response;
 
 public class MinuteActivity extends AppCompatActivity implements Callback<List<Word>> {
     private TextView randomWord;
-    private String word;
+    private String wordString;
     private EditText userInput;
-    private String word1;
+    private API service;
 
 
     @Override
@@ -39,25 +41,41 @@ public class MinuteActivity extends AppCompatActivity implements Callback<List<W
                 .setEndpoint("http://api.wordnik.com:80/v4/words.json")
                 .setClient(new OkClient(new OkHttpClient()))
                 .build();
-        API service = restAdapter.create(API.class);
+        service = restAdapter.create(API.class);
 
-        service.getWordAsync(false, 0, -1, 1, -1, 3, 7, 1,
-                "a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5", this);
+        generateWord();
 
+        randomWord.setText(wordString);
 
-        word = CallBack.sendWord();
-        randomWord.setText(word.toUpperCase());
-
+        handleEnter();
     }
 
+    public void handleEnter(){
+        userInput.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_DOWN)
+                    if (keyCode == KeyEvent.KEYCODE_ENTER) {
+                        generateWord();
+                        return true;
+                    }
+                return false;
+            }
+        });
+    }
+
+    public void generateWord(){
+        service.getWordAsync(false, 0, -1, 1, -1, 3, 7, 1,
+                "a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5", this);
+    }
 
     @Override
     public void success(List<Word> words, Response response) {
-
+            for (Word w : words) {
+                wordString = w.word;
+            }
     }
 
     @Override
-    public void failure(RetrofitError error) {
-
-    }
+    public void failure(RetrofitError error) {}
 }

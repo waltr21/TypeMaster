@@ -29,14 +29,14 @@
                 android:id="@+id/gameTitle"
                 android:layout_alignParentTop="true"
                 android:textSize="30sp"
-                android:text="Minute to Win it" />
+                android:text="@string/minute" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/gameSummary"
                 android:layout_below="@+id/gameTitle"
-                android:text="One minute to type as many words as you can." />
+                android:text="@string/subMinute" />
 
         </RelativeLayout>
 
@@ -62,14 +62,14 @@
                 android:id="@+id/wordTitle"
                 android:layout_alignParentTop="true"
                 android:textSize="30sp"
-                android:text="How Many Words?" />
+                android:text="@string/howMany" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/wordSummary"
                 android:layout_below="@+id/wordTitle"
-                android:text="You choose how many words you want tp type. We keep track of the time." />
+                android:text="@string/subhowMany" />
 
         </RelativeLayout>
 
@@ -95,7 +95,7 @@
                 android:id="@+id/practiceTitle"
                 android:layout_alignParentTop="true"
                 android:textSize="30sp"
-                android:text="Practice" />
+                android:text="@string/practice" />
 
             <TextView
                 android:layout_width="wrap_content"
