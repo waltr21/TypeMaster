@@ -102,7 +102,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/practiceSummary"
                 android:layout_below="@+id/practiceTitle"
-                android:text="Practice letters that you have trouble typing with. No time is recorded." />
+                android:text="@string/practice_sub" />
 
         </RelativeLayout>
 
@@ -128,14 +128,14 @@
                 android:id="@+id/scoreTitle"
                 android:layout_alignParentTop="true"
                 android:textSize="30sp"
-                android:text="High Scores" />
+                android:text="@string/high_score" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/scoreSummary"
                 android:layout_below="@+id/scoreTitle" 
-                android:text="View the best times of you and your friends." />
+                android:text="@string/highScoreSub" />
 
         </RelativeLayout>
 
@@ -144,9 +144,8 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sign In"
+        android:text="@string/sign_in"
         android:id="@+id/signIn"
-        android:layout_marginTop="54dp"
         android:layout_below="@+id/score_card"
         android:layout_centerHorizontal="true" />
 

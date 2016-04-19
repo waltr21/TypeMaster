@@ -70,7 +70,7 @@ public class Main extends AppCompatActivity {
             @Override
             public void onClick(View press) {
                 //simple if statement to check which activity to go to
-                
+
             }
         });
 
