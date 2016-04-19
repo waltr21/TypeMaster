@@ -8,6 +8,10 @@
         "source": "/Users/RyanWalt/AndroidStudioProjects/TypeMaster/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/layout/notification_template_media.xml"
     },
     {
+        "merged": "/Users/RyanWalt/AndroidStudioProjects/TypeMaster/app/build/intermediates/res/merged/debug/layout/activity_score_review.xml",
+        "source": "/Users/RyanWalt/AndroidStudioProjects/TypeMaster/app/src/main/res/layout/activity_score_review.xml"
+    },
+    {
         "merged": "/Users/RyanWalt/AndroidStudioProjects/TypeMaster/app/build/intermediates/res/merged/debug/layout/notification_template_part_chronometer.xml",
         "source": "/Users/RyanWalt/AndroidStudioProjects/TypeMaster/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/layout/notification_template_part_chronometer.xml"
     },
