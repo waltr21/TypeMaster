@@ -141,6 +141,14 @@
 
     </android.support.v7.widget.CardView>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign In"
+        android:id="@+id/signIn"
+        android:layout_marginTop="54dp"
+        android:layout_below="@+id/score_card"
+        android:layout_centerHorizontal="true" />
 
 
 </RelativeLayout>
