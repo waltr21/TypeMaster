@@ -14,8 +14,6 @@ public class Main extends AppCompatActivity {
     private CardView wordCard;
     private CardView practiceCard;
     private CardView scoreCard;
-    private Button signInButton;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +27,15 @@ public class Main extends AppCompatActivity {
         wordCard = (CardView) findViewById(R.id.word_card);
         practiceCard = (CardView) findViewById(R.id.practice_card);
         scoreCard = (CardView) findViewById(R.id.score_card);
-        signInButton = (Button) findViewById(R.id.signIn);
+
+
+        /*// Create the Google Api Client with access to Plus and Games
+        mGoogleApiClient = new GoogleApiClient.Builder(getApplicationContext())
+                .addOnConnectionFailedListener(this)
+                .addApi(Games.API).addScope(Games.SCOPE_GAMES)
+                // add other APIs and scopes here as needed
+                .build();*/
+
 
         minuteCard.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,15 +73,23 @@ public class Main extends AppCompatActivity {
             }
         });
 
-        signInButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View press) {
-                //simple if statement to check which activity to go to
-
-            }
-        });
-
-
-
     }
+
+   /* boolean mExplicitSignOut = false;
+    boolean mInSignInFlow = false;
+    // set to true when you're in the middle of the
+    // sign in flow, to know you should not attempt
+    // to connect in onStart()
+
+    GoogleApiClient mGoogleApiClient;  // initialized in onCreate
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (!mInSignInFlow && !mExplicitSignOut) {
+            // auto sign in
+            mGoogleApiClient.connect();
+        }
+    }*/
+
 }
