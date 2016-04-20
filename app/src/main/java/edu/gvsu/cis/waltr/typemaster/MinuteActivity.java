@@ -9,9 +9,13 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.gtranslate.Language;
+import com.gtranslate.Translator;
 import com.squareup.okhttp.OkHttpClient;
 
 import java.util.List;
+
+
 
 import retrofit.Callback;
 import retrofit.RestAdapter;
@@ -71,9 +75,17 @@ public class MinuteActivity extends AppCompatActivity implements Callback<List<W
 
     @Override
     public void success(List<Word> words, Response response) {
-            for (Word w : words) {
-                wordString = w.word;
-            }
+        for (Word w : words) {
+            wordString = w.word;
+
+        }
+        if (getString(R.string.lang).equals("German")) {
+            Translator translate = Translator.getInstance();
+            wordString = translate.translate(wordString, Language.ENGLISH, Language.GERMAN);
+            randomWord.setText(wordString.toUpperCase());
+        } else {
+            randomWord.setText(wordString.toUpperCase());
+        }
     }
 
     @Override

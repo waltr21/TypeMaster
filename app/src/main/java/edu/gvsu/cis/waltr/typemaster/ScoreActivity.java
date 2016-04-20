@@ -13,6 +13,6 @@ public class ScoreActivity extends AppCompatActivity {
         setContentView(R.layout.activity_score);
 
        // StartActivityForResult(Games.Leaderboards.getLeaderboardIntent(mGoogleApiClient,
-         //       LEADERBOARD_ID), CgkI7ryyz50REAIQAQ);*/
+         //       CgkI7ryyz50REAIQAQ), Figure out what goes here.);*/
     }
 }

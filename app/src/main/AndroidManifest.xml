@@ -3,14 +3,16 @@
     package="edu.gvsu.cis.waltr.typemaster">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Main" android:screenOrientation="portrait">
-
+        <activity
+            android:name=".Main"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,7 +22,8 @@
         <activity android:name=".MinuteActivity" />
         <activity android:name=".WordActivity" />
         <activity android:name=".PracticeActivity" />
-        <activity android:name=".ScoreActivity"></activity>
+        <activity android:name=".ScoreActivity" />
+        <activity android:name=".ScoreReview"></activity>
     </application>
 
 </manifest>

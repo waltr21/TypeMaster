@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+
 public class Main extends AppCompatActivity {
     private CardView minuteCard;
     private CardView wordCard;
