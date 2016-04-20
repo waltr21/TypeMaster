@@ -146,7 +146,7 @@
         android:layout_height="wrap_content"
         android:text="@string/sign_in"
         android:id="@+id/signIn"
-        android:layout_below="@+id/score_card"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 
 
