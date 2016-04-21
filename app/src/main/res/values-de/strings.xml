@@ -8,10 +8,12 @@
     <string name="subhowMany">Sie wählen wie viele Wörter Sie Tippen. Wir verfolgen Zeit.</string>
     <string name="practice">üben</string>
 
-    <string name="sign_in">Login</string>
+
     <string name="highScoreSub">Sehen die beste Zeit.</string>
     <string name="high_score">Hoch Treffen</string>
     <string name="practice_sub">üben schwer Worte für eine bessere Zeit. Keine zeit Grenze.</string>
+
+    <string name="lang">German</string>
 
 
 </resources>

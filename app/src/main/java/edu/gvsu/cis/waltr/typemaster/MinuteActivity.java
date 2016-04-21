@@ -16,11 +16,15 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.gtranslate.Language;
+import com.gtranslate.Translator;
 import com.squareup.okhttp.OkHttpClient;
 
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+
+
 
 import retrofit.Callback;
 import retrofit.RestAdapter;
@@ -100,6 +104,7 @@ public class MinuteActivity extends AppCompatActivity implements Callback<List<W
             generateWord();
         }
         randomWord.setText(wordString.toUpperCase());
+
     }
 
     @Override
