@@ -15,5 +15,30 @@
 
     <string name="lang">German</string>
 
+    <string name="how_to">Wie:</string>
+    <string name="how_to_message">Willkommen in unserem Spiel! Geben Sie die Wörter, die zufällig so schnell wie möglich erscheinen.
+        Um Ihr Wort einreichen, drücken Sie die Leertaste . Um ein Wort , doppeltes Tippen Sie die Leertaste springen.
+        (Übersprungene Worte werden als Fehler auf Ihre Punktzahl Bewertung zählen)</string>
+
+    <string name="connect">Mit dem Internet verbinden</string>
+    <string name="connect_msg">Wir haben festgestellt , dass Sie nicht mit dem Internet verbunden sind.
+        Diese App erfordert eine stabile Internetverbindung zu allen Zeiten. Bitte komm
+        zurück, wenn Sie verbunden sind !</string>
+
+    <string name="total_time">Gesamtzeit:</string>
+    <string name="num_of_errors">Anzahl der Fehler:</string>
+    <string name="words_per_min">Wörter pro Minute:</string>
+    <string name="error_doesnt_count">(Fehler zählen nicht zum Gesamtergebnis)</string>
+
+    <string name="sixty_seconds">60 Sekunden</string>
+    <string name="num_errors">Anzahl Fehler</string>
+    <string name="wpm">WPM</string>
+    <string name="num_correct">Anzahl Richtig:</string>
+
+    <string name="num_right">Anzahl Rechts</string>
+    <string name="words_seen">Insgesamt Wörter gesehen:</string>
+    <string name="num_seen">anzahl gesehen</string>
+
+
 
 </resources>

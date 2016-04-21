@@ -16,8 +16,6 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.gtranslate.Language;
-import com.gtranslate.Translator;
 import com.squareup.okhttp.OkHttpClient;
 
 import java.util.List;
@@ -180,10 +178,8 @@ public class MinuteActivity extends AppCompatActivity implements Callback<List<W
 
     public void alert() {
         new AlertDialog.Builder(MinuteActivity.this)
-                .setTitle("How to:")
-                .setMessage("Welcome to our game! Type the words that will randomly appear as fast as you can." +
-                        " To submit your word, press the space bar. To skip a word, double tap the space bar. " +
-                        "(Skipped words will count as an error towards your score review)")
+                .setTitle(getResources().getString(R.string.how_to))
+                .setMessage(getResources().getString(R.string.how_to_message))
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         alertOpen = false;

@@ -63,10 +63,8 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
         a warning and booted out of the app */
         if (!isNetworkAvailable()) {
             new AlertDialog.Builder(Main.this)
-                    .setTitle("Connect to the internet")
-                    .setMessage("We have detected that you are not connected to the internet." +
-                            "This app requires a stable internet connection at all times. Please come " +
-                            "back when you are connected!")
+                    .setTitle(getResources().getString(R.string.connect))
+                    .setMessage(getResources().getString(R.string.connect_msg))
                     .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             // continue with delete
