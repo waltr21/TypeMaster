@@ -39,6 +39,9 @@
     <string name="words_seen">Insgesamt Wörter gesehen:</string>
     <string name="num_seen">anzahl gesehen</string>
 
+    <string name="min_word_length">Mindestwortlänge:</string>
+    <string name="max_word_length">Maximale Wortlänge:</string>
+
 
 
 </resources>

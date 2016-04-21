@@ -40,5 +40,8 @@
     <string name="num_seen">numSeen</string>
 
 
+    <string name="min_word_length">Minimum word length:</string>
+    <string name="max_word_length">Maximum word length:</string>
+
 </resources>
 
