@@ -111,7 +111,7 @@ public class MinuteActivity extends AppCompatActivity implements Callback<List<W
 
     @Override
     public void onBackPressed() {
-        if (!alertOpen)
+        if (!alertOpen && !wordGame)
         timer.cancel();
         Intent launchMain = new Intent(MinuteActivity.this, Main.class);
         startActivity(launchMain);
