@@ -31,6 +31,13 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
     boolean mInSignInFlow = false;
     private GoogleApiClient mGoogleApiClient;
     private static int RC_SIGN_IN = 9001;
+    private static int REQUEST_LEADERBOARD = 9;
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
     private boolean mResolvingConnectionFailure = false;
     private boolean mAutoStartSignInFlow = true;
     private boolean mSignInClicked = false;
@@ -42,6 +49,8 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+
         LinearLayout layout = new LinearLayout(this);
         layout.setOrientation(LinearLayout.HORIZONTAL);
 
@@ -49,6 +58,8 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
         wordCard = (CardView) findViewById(R.id.word_card);
         practiceCard = (CardView) findViewById(R.id.practice_card);
         scoreCard = (CardView) findViewById(R.id.score_card);
+
+        scoreCard.setEnabled(false);
 
 
         // Create the Google Api Client with access to Plus and Games
@@ -90,8 +101,8 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
             @Override
             public void onClick(View press) {
                 //simple if statement to check which activity to go to
-                Intent launchScore = new Intent(Main.this, ScoreActivity.class);
-                startActivity(launchScore);
+                startActivityForResult(Games.Leaderboards.getLeaderboardIntent(mGoogleApiClient,
+                        "CgkI7ryyz50REAIQAQ"), REQUEST_LEADERBOARD);
             }
         });
 
@@ -119,11 +130,8 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
 
     @Override
     public void onConnected(@Nullable Bundle bundle) {
-        Log.d("Hello","Bye");
+        scoreCard.setEnabled(true);
         // show sign-out button, hide the sign-in button
-        //findViewById(R.id.sign_in_button).setVisibility(View.GONE);
-        //findViewById(R.id.sign_out_button).setVisibility(View.VISIBLE);
-
         // (your code here: update UI, enable functionality that
     }
 
