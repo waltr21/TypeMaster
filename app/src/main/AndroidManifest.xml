@@ -3,6 +3,7 @@
     package="edu.gvsu.cis.waltr.typemaster">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -19,8 +20,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".PopUp"
+            android:theme="@style/AppTheme.Custom"/>
         <activity android:name=".MinuteActivity" />
-        <activity android:name=".WordActivity" />
         <activity android:name=".PracticeActivity" />
         <activity android:name=".ScoreActivity" />
         <activity android:name=".ScoreReview"></activity>

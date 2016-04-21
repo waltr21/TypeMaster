@@ -1,14 +1,19 @@
 package edu.gvsu.cis.waltr.typemaster;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
-import android.view.KeyEvent;
-import android.view.View;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.squareup.okhttp.OkHttpClient;
@@ -23,16 +28,16 @@ import retrofit.RetrofitError;
 import retrofit.client.OkClient;
 import retrofit.client.Response;
 
-public class MinuteActivity extends AppCompatActivity implements Callback<List<Word>>, View.OnKeyListener {
-    private TextView randomWord;
-    private String wordString;
+public class MinuteActivity extends AppCompatActivity implements Callback<List<Word>> {
+    private TextView randomWord, counter, prevWordView;
+    private String wordString, prevWordString;
     private EditText userInput;
     private API service;
-    private Button go;
-    private int numRight;
-    private int numWrong;
-    private int totalWords;
+    private int numRight, numWrong, totalWords, wordLimit;
     private Timer timer;
+    private boolean wordGame, minuteGame, stopped, alertOpen;
+    public double startTime, endTime, elapsedMilliSeconds, elapsedSeconds;
+    CountDownTimer cT;
 
 
     @Override
@@ -40,26 +45,30 @@ public class MinuteActivity extends AppCompatActivity implements Callback<List<W
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_minute);
 
-        ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE))
-                .toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
+        LinearLayout layout = new LinearLayout(this);
+        layout.setOrientation(LinearLayout.HORIZONTAL);
 
-        randomWord = (TextView) findViewById(R.id.randomWord);
+        //Opens the instructions on launch.
+        alert();
+        alertOpen =  true;
+
+        Intent pull = getIntent();
+        wordGame = pull.getBooleanExtra("wordGame", false);
+        minuteGame = pull.getBooleanExtra("minuteGame", false);
+        wordLimit = pull.getIntExtra("wordAmount", 0);
+
+        stopped = false;
+
+        if (wordGame)
+            startTime = SystemClock.elapsedRealtime();
+
+        randomWord = (TextView) findViewById(R.id.randomWordP);
         userInput = (EditText) findViewById(R.id.editText);
-        go = (Button) findViewById(R.id.button);
-        userInput.setOnKeyListener(this);
+        counter = (TextView) findViewById(R.id.counter);
+        prevWordView= (TextView) findViewById(R.id.prevWord);
 
-        //Launches the new activity after 60 seconds
-        timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                Intent launchScore = new Intent(MinuteActivity.this, ScoreReview.class);
-                launchScore.putExtra("numRight", numRight);
-                launchScore.putExtra("numWrong", numWrong);
-                launchScore.putExtra("totalWords", totalWords);
-                startActivity(launchScore);
-            }
-        }, 60000);
+        prevWordView.setText("");
+        randomWord.setText("");
 
         //API set up...
         RestAdapter restAdapter = new RestAdapter.Builder()
@@ -71,70 +80,170 @@ public class MinuteActivity extends AppCompatActivity implements Callback<List<W
         //Generates a random word
         generateWord();
 
-        /*A tempoary button that fulfils the job of the enter button
-        on the users keyboard. This will soon be fixed... */
-
-            go.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View press) {
-                    //simple if statement to check which activity to go to
-                    totalWords++;
-
-
-                    //Takes what the user entered
-                    String userWord = userInput.getText().toString();
-
-                    //Counts num right and wrong
-                    if (userWord.toLowerCase().equals(wordString.toLowerCase())) {
-                        numRight++;
-
-                    }
-
-                    else {
-                        numWrong++;
-                    }
-
-                    //Resets the text for the user...
-                    userInput.setText("");
-
-                    generateWord();
-                }
-            });
-
+        spaceCheck();
     }
 
     //Calls the service method to geet a random word
-    public void generateWord(){
-        service.getWordAsync(false, 0, -1, 1, -1, 3, 7, 1,
+    public void generateWord() {
+        service.getWordAsync(true, 0, -1, 1, -1, 3, 7, 1,
                 "a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5", this);
     }
 
     //Pulls a word from the arraylist and sets the text to randomWord
     @Override
     public void success(List<Word> words, Response response) {
-            for (Word w : words) {
-        wordString = w.word;
-    }
-    randomWord.setText(wordString.toUpperCase());
-    }
-
-    @Override
-    public void failure(RetrofitError error) {}
-
-    /*Checks if the user presses enter on the keyboard
-    *this currently doesn't work and I'm not sure why. I'll have to work
-    * on it later. I placed a temporary button to do the roll of what will
-    * soon be the enter button. */
-    @Override
-    public boolean onKey(View v, int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_ENTER) {
+        for (Word w : words) {
+            wordString = w.word;
+        }
+        //avoids a weird word with a space in it...
+        while (wordString.contains(" ")){
             generateWord();
-            return true;
         }
-        else{
-            return false;
+        randomWord.setText(wordString.toUpperCase());
+    }
+
+    @Override
+    public void failure(RetrofitError error) {
+    }
+
+    @Override
+    public void onBackPressed() {
+        timer.cancel();
+        Intent launchMain = new Intent(MinuteActivity.this, Main.class);
+        startActivity(launchMain);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (minuteGame) {
+            timer.cancel();
+        }
+        stopped = true;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (stopped) {
+            Intent launchMain = new Intent(MinuteActivity.this, Main.class);
+            startActivity(launchMain);
         }
     }
 
+    public void compare() {
 
+        //simple if statement to check which activity to go to
+        totalWords++;
+        //Sets the text for word game only
+        if (wordGame)
+            counter.setText(totalWords + "");
+        //Takes what the user entered
+        String userWord = userInput.getText().toString();
+        prevWordString = userWord;
+        //Counts num right and wrong
+        if (userWord.toLowerCase().equals(wordString.toLowerCase() + " ")){
+            numRight++;
+            prevWordView.setText(prevWordString);
+            prevWordView.setTextColor(Color.parseColor("#1f7a1f"));
+        }
+        else {
+            numWrong++;
+            prevWordView.setText(prevWordString);
+            prevWordView.setTextColor(Color.RED);
+        }
+        //Resets the text for the user...
+        userInput.setText("");
+
+        if (wordGame) {
+            if (wordLimit == totalWords) {
+                endTime = SystemClock.elapsedRealtime();
+                elapsedMilliSeconds = endTime - startTime;
+                elapsedSeconds = elapsedMilliSeconds / 1000.0;
+                Intent launchScore = new Intent(MinuteActivity.this, ScoreReview.class);
+                launchScore.putExtra("numRight", numRight);
+                launchScore.putExtra("numWrong", numWrong);
+                launchScore.putExtra("totalWords", totalWords);
+                launchScore.putExtra("minuteGame", minuteGame);
+                launchScore.putExtra("wordGame", wordGame);
+                launchScore.putExtra("time", elapsedSeconds);
+                startActivity(launchScore);
+            }
+        }
+        generateWord();
+    }
+
+    public void alert() {
+        new AlertDialog.Builder(MinuteActivity.this)
+                .setTitle("How to:")
+                .setMessage("Welcome to our game! Type the words that will randomly appear as fast as you can." +
+                        " To submit your word, press the space bar. To skip a word, double tap the space bar. " +
+                        "(Skipped words will count as an error towards your score review)")
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        alertOpen = false;
+                        ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE))
+                                .toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
+
+                        startTime();
+
+                    }
+                })
+                .show();
+    }
+
+    public void spaceCheck(){
+        userInput.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.length() > 1) {
+                    char last = s.charAt(s.length() - 1);
+                    if (' ' == last) {
+                        compare();
+                    }
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+    }
+
+    public void startTime(){
+        //Starts the timer of the activity for the minute game.
+        if (minuteGame && !alertOpen) {
+            cT = new CountDownTimer(61000, 1000) {
+                public void onTick(long millisUntilFinished) {
+                    String v = String.format("%02d", millisUntilFinished / 60000);
+                    int va = (int) ((millisUntilFinished % 60000) / 1000);
+                    counter.setText(v + ":" + String.format("%02d", va));
+                }
+
+                public void onFinish() {
+                    counter.setText("Done!");
+                }
+            };
+            cT.start();
+
+            //Launches the new activity after 60 seconds
+            timer = new Timer();
+            timer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    Intent launchScore = new Intent(MinuteActivity.this, ScoreReview.class);
+                    launchScore.putExtra("numRight", numRight);
+                    launchScore.putExtra("numWrong", numWrong);
+                    launchScore.putExtra("totalWords", totalWords);
+                    launchScore.putExtra("minuteGame", minuteGame);
+                    launchScore.putExtra("wordGame", wordGame);
+                    startActivity(launchScore);
+                }
+            }, 60000);
+        }
+    }
 }

@@ -12,7 +12,7 @@ public class ScoreActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score);
 
-       // StartActivityForResult(Games.Leaderboards.getLeaderboardIntent(mGoogleApiClient,
-         //       LEADERBOARD_ID), CgkI7ryyz50REAIQAQ);*/
+//                StartActivityForResult(Games.Leaderboards.getLeaderboardIntent(mGoogleApiClient,
+//                LEADERBOARD_ID), CgkI7ryyz50REAIQAQ);
     }
 }

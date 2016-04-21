@@ -14,18 +14,64 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Word"
-        android:id="@+id/randomWord"
-        android:layout_marginTop="44dp"
-        android:layout_centerHorizontal="true"
-        android:textSize="50dp" />
+        android:id="@+id/randomWordP"
+        android:textSize="50dp"
+        android:layout_marginTop="38dp"
+        android:layout_below="@+id/editText4"
+        android:layout_centerHorizontal="true" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editText2"
-        android:layout_centerVertical="true"
+        android:id="@+id/userInputP"
+        android:width="200dp"
+        android:layout_below="@+id/randomWordP"
         android:layout_centerHorizontal="true"
-        android:width="200dp" />
+        android:layout_marginTop="45dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/editText3"
+        android:width="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/textView10"
+        android:layout_toEndOf="@+id/textView10" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Minimum word lenght:"
+        android:id="@+id/textView4"
+        android:layout_alignTop="@+id/editText3"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Maximum word length:"
+        android:id="@+id/textView10"
+        android:layout_alignTop="@+id/editText4"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="10dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/editText4"
+        android:width="50dp"
+        android:layout_below="@+id/editText3"
+        android:layout_toRightOf="@+id/textView10"
+        android:layout_toEndOf="@+id/textView10" />
 
 </RelativeLayout>
 
