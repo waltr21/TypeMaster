@@ -6,11 +6,13 @@
     <string name="subhowMany">You choose how many words you want to type. We keep track of the time.</string>
     <string name="practice">Practice</string>
 
-    <string name="sign_in">Login</string>
+
     <string name="highScoreSub">View the best times of you and your friends.</string>
     <string name="high_score">High Score</string>
     <string name="practice_sub">Practice letters that you have trouble typing with. No time is recorded.</string>
 
     <string name="lang">English</string>
+
+    <string name="signin_other_error">Error...</string>
 
 </resources>

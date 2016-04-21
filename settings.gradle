@@ -1,1 +1,1 @@
-include ':app', ':gtranslateapi-1.0'
+include ':app', ':gtranslateapi-1.0', ':BaseGameUtils'

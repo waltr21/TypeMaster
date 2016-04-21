@@ -79,13 +79,9 @@ public class MinuteActivity extends AppCompatActivity implements Callback<List<W
             wordString = w.word;
 
         }
-        if (getString(R.string.lang).equals("German")) {
-            Translator translate = Translator.getInstance();
-            wordString = translate.translate(wordString, Language.ENGLISH, Language.GERMAN);
+
             randomWord.setText(wordString.toUpperCase());
-        } else {
-            randomWord.setText(wordString.toUpperCase());
-        }
+
     }
 
     @Override

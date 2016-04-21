@@ -8,6 +8,7 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/BaseGameUtils" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/gtranslateapi-1.0" />
           </set>
@@ -15,6 +16,7 @@
         <option name="myModules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/BaseGameUtils" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/gtranslateapi-1.0" />
           </set>
