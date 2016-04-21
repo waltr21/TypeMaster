@@ -1,5 +1,6 @@
 package edu.gvsu.cis.waltr.typemaster;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -19,11 +20,11 @@ import retrofit.client.OkClient;
 import retrofit.client.Response;
 
 public class PracticeActivity extends AppCompatActivity implements Callback<List<Word>> {
-    private TextView randomWordP;
-    private EditText userInputP;
+    private TextView randomWordP, prevWordView;
+    private EditText userInputP, minInput, maxInput;
     private API service;
-    private String wordString;
-    private int numWrong, numRight;
+    private String wordString, prevWordString;
+    private int minLength, maxLength;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -41,8 +42,18 @@ public class PracticeActivity extends AppCompatActivity implements Callback<List
 
         randomWordP = (TextView) findViewById(R.id.randomWordP);
         userInputP = (EditText) findViewById(R.id.userInputP);
+        minInput = (EditText) findViewById(R.id.minLength);
+        maxInput = (EditText) findViewById(R.id.maxLength);
+        prevWordView = (TextView) findViewById(R.id.prevWordPractice);
 
         randomWordP.setText("");
+        prevWordView.setText("");
+
+        minLength = 3;
+        maxLength = 7;
+
+        minInput.setText("3");
+        maxInput.setText("7");
 
         generateWord();
 
@@ -67,7 +78,7 @@ public class PracticeActivity extends AppCompatActivity implements Callback<List
     }
 
     public void generateWord() {
-        service.getWordAsync(true, 0, -1, 1, -1, 3, 7, 1,
+        service.getWordAsync(true, 0, -1, 1, -1, minLength, maxLength, 1,
                 "a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5", this);
     }
 
@@ -86,7 +97,6 @@ public class PracticeActivity extends AppCompatActivity implements Callback<List
                     }
                 }
             }
-
             @Override
             public void afterTextChanged(Editable s) {
             }
@@ -96,11 +106,29 @@ public class PracticeActivity extends AppCompatActivity implements Callback<List
     public void compare() {
         //Takes what the user entered
         String userWord = userInputP.getText().toString();
+        prevWordString = userWord;
+
+        if (minInput.length() > 0 && maxInput.length() > 0){
+            minLength = Integer.parseInt(minInput.getText().toString());
+            maxLength = Integer.parseInt(maxInput.getText().toString());
+            if (minLength > maxLength){
+                int minTemp = minLength;
+                minLength = maxLength;
+                maxLength = minTemp;
+                minInput.setText(minLength + "");
+                maxInput.setText(maxLength + "");
+            }
+        }
+
         //Counts num right and wrong
-        if (userWord.toLowerCase().equals(wordString.toLowerCase() + " "))
-            numRight++;
-        else
-        numWrong++;
+        if (userWord.toLowerCase().equals(wordString.toLowerCase() + " ")) {
+            prevWordView.setText(prevWordString);
+            prevWordView.setTextColor(Color.parseColor("#1f7a1f"));
+        }
+        else{
+            prevWordView.setText(prevWordString);
+            prevWordView.setTextColor(Color.RED);
+        }
         //Resets the text for the user...
         userInputP.setText("");
         generateWord();
