@@ -111,6 +111,7 @@ public class MinuteActivity extends AppCompatActivity implements Callback<List<W
 
     @Override
     public void onBackPressed() {
+        if (!alertOpen)
         timer.cancel();
         Intent launchMain = new Intent(MinuteActivity.this, Main.class);
         startActivity(launchMain);
@@ -119,7 +120,7 @@ public class MinuteActivity extends AppCompatActivity implements Callback<List<W
     @Override
     protected void onStop() {
         super.onStop();
-        if (minuteGame) {
+        if (minuteGame && !alertOpen) {
             timer.cancel();
         }
         stopped = true;
