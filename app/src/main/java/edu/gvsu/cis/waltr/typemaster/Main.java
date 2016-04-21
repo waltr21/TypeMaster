@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 
@@ -118,7 +119,12 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
 
     @Override
     public void onConnected(@Nullable Bundle bundle) {
+        Log.d("Hello","Bye");
+        // show sign-out button, hide the sign-in button
+        //findViewById(R.id.sign_in_button).setVisibility(View.GONE);
+        //findViewById(R.id.sign_out_button).setVisibility(View.VISIBLE);
 
+        // (your code here: update UI, enable functionality that
     }
 
     @Override
