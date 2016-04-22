@@ -27,6 +27,7 @@
         android:width="200dp"
         android:layout_below="@+id/randomWordP"
         android:layout_centerHorizontal="true"
+        android:imeOptions="actionGo"
         android:layout_marginTop="45dp" />
 
     <EditText

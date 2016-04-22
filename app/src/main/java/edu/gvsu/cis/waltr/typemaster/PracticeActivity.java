@@ -107,10 +107,16 @@ public class PracticeActivity extends AppCompatActivity implements Callback<List
         //Takes what the user entered
         String userWord = userInputP.getText().toString();
         prevWordString = userWord;
+        randomWordP.setTextSize(50);
 
         if (minInput.length() > 0 && maxInput.length() > 0){
             minLength = Integer.parseInt(minInput.getText().toString());
             maxLength = Integer.parseInt(maxInput.getText().toString());
+            if (maxLength > 11){
+                randomWordP.setTextSize(40);
+                maxLength = 11;
+
+            }
             if (minLength > maxLength){
                 int minTemp = minLength;
                 minLength = maxLength;

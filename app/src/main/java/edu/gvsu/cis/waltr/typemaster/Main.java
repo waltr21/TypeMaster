@@ -10,15 +10,15 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
-import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
+
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.games.Games;
-import com.google.example.games.basegameutils.BaseGameUtils;
 import com.google.android.gms.common.data.Freezable;
+import com.google.android.gms.games.Games;
 import com.google.android.gms.games.leaderboard.Leaderboard;
+import com.google.example.games.basegameutils.BaseGameUtils;
 
 
 
@@ -34,15 +34,17 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
     private static int REQUEST_LEADERBOARD = 9;
     private CardView minuteCard, wordCard, practiceCard, scoreCard;
     private boolean wordGame, minuteGame;
+    private boolean mResolvingConnectionFailure = false;
+    private boolean mAutoStartSignInFlow = true;
+    private boolean mSignInClicked = false;
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-    private boolean mResolvingConnectionFailure = false;
-    private boolean mAutoStartSignInFlow = true;
-    private boolean mSignInClicked = false;
+
 
 
 

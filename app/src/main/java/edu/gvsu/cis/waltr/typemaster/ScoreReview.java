@@ -3,7 +3,9 @@ package edu.gvsu.cis.waltr.typemaster;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.TextView;
 
 
@@ -11,19 +13,11 @@ import java.math.RoundingMode;
 import java.text.DecimalFormat;
 
 public class ScoreReview extends AppCompatActivity {
-    private int numRight;
-    private int numWrong;
-    private double wordsPerMinute;
-    private int totalWords;
-    private double time;
-    private TextView wpmText;
-    private TextView numErros;
-    private TextView numRightText;
-    private TextView wordsSeen;
-    private TextView timeText;
-    private boolean wordGame;
-    private boolean minuteGame;
-
+    private int numRight, numWrong, totalWords;
+    private double wordsPerMinute, time;
+    private TextView wpmText, numErrors, numRightText, wordsSeen, timeText;
+    private boolean wordGame, minuteGame;
+    private Button home;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,7 +29,7 @@ public class ScoreReview extends AppCompatActivity {
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         wpmText = (TextView) findViewById(R.id.wpmText);
-        numErros = (TextView) findViewById(R.id.numErrorsText);
+        numErrors = (TextView) findViewById(R.id.numErrorsText);
         numRightText = (TextView) findViewById(R.id.numRightText);
         wordsSeen = (TextView) findViewById(R.id.numSeen);
         timeText = (TextView) findViewById(R.id.timeText);
@@ -61,9 +55,19 @@ public class ScoreReview extends AppCompatActivity {
         }
 
         numRightText.setText(numRight + "");
-        numErros.setText(numWrong + "");
+        numErrors.setText(numWrong + "");
         wpmText.setText(df.format(wordsPerMinute) + "");
         wordsSeen.setText(totalWords + "");
+
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View press) {
+                //simple if statement to check which activity to go to
+                Intent launchMain = new Intent(ScoreReview.this, Main.class);
+                launchMain.putExtra("wordsPerMinute", wordsPerMinute);
+                startActivity(launchMain);
+            }
+        });
 
     }
     //Handles the back button so the user cant go back into typing
@@ -72,4 +76,5 @@ public class ScoreReview extends AppCompatActivity {
         Intent launchScore = new Intent(ScoreReview.this, Main.class);
         startActivity(launchScore);
     }
+
 }
