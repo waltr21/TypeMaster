@@ -33,6 +33,7 @@ public class ScoreReview extends AppCompatActivity {
         numRightText = (TextView) findViewById(R.id.numRightText);
         wordsSeen = (TextView) findViewById(R.id.numSeen);
         timeText = (TextView) findViewById(R.id.timeText);
+        home = (Button) findViewById(R.id.button);
 
         Intent pull = getIntent();
         numRight = pull.getIntExtra("numRight", 0);
