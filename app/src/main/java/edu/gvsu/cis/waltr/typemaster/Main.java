@@ -11,6 +11,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -31,8 +32,9 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
     boolean mInSignInFlow = false;
     private GoogleApiClient mGoogleApiClient;
     private static int RC_SIGN_IN = 9001;
-    private static int REQUEST_LEADERBOARD = 9;
+    private static int REQUEST_LEADERBOARD = 0;
     private CardView minuteCard, wordCard, practiceCard, scoreCard;
+    private Button signIn, signOut;
     private boolean wordGame, minuteGame;
     private boolean mResolvingConnectionFailure = false;
     private boolean mAutoStartSignInFlow = true;
@@ -43,9 +45,6 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
     }
-
-
-
 
 
     @Override
@@ -82,6 +81,11 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
         practiceCard = (CardView) findViewById(R.id.practice_card);
         scoreCard = (CardView) findViewById(R.id.score_card);
 
+        signIn = (Button) findViewById(R.id.button2);
+        signOut = (Button) findViewById(R.id.button3);
+
+
+        
         scoreCard.setEnabled(false);
 
 
@@ -134,6 +138,24 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
                 //simple if statement to check which activity to go to
                 startActivityForResult(Games.Leaderboards.getLeaderboardIntent(mGoogleApiClient,
                         "CgkI7ryyz50REAIQAQ"), REQUEST_LEADERBOARD);
+
+            }
+        });
+
+        signIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View press) {
+               if (!mInSignInFlow && !mExplicitSignOut) {
+                    // auto sign in
+                   mGoogleApiClient.connect();
+               }
+            }
+        });
+
+        signOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View press) {
+                mGoogleApiClient.disconnect();
             }
         });
 
@@ -144,20 +166,20 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
 
       // initialized in onCreate
 
-    @Override
+    /*@Override
     protected void onStart() {
         super.onStart();
         if (!mInSignInFlow && !mExplicitSignOut) {
             // auto sign in
             mGoogleApiClient.connect();
         }
-    }
+    }*/
 
-    @Override
+    /*@Override
     protected void onStop() {
         super.onStop();
         mGoogleApiClient.disconnect();
-    }
+    }*/
 
     @Override
     public void onConnected(@Nullable Bundle bundle) {
