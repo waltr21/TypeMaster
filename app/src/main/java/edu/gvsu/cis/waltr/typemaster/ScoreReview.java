@@ -18,6 +18,7 @@ public class ScoreReview extends AppCompatActivity {
     private TextView wpmText, numErrors, numRightText, wordsSeen, timeText;
     private boolean wordGame, minuteGame;
     private Button home;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,17 +70,12 @@ public class ScoreReview extends AppCompatActivity {
                 startActivity(launchMain);
             }
         });
-
     }
     //Handles the back button so the user cant go back into typing
     @Override
     public void onBackPressed() {
         Intent launchScore = new Intent(ScoreReview.this, Main.class);
         startActivity(launchScore);
-    }
-
-    public double getScore(){
-        return wordsPerMinute;
     }
 
 }

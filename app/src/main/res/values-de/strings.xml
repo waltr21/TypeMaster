@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string name="LEADERBOARD_ID">CgkI7ryyz50REAIQAQ</string>
+
     <string name="app_name">Tippen Meister</string>
     <string name="minute">Minuten zu gewinnen.</string>
     <string name="subMinute">Tippe viele Wörter in ein minuten.</string>

@@ -43,7 +43,7 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
     private boolean mResolvingConnectionFailure = false;
     private boolean mAutoStartSignInFlow = true;
     private boolean mSignInClicked = false;
-    private ScoreReview highScore;
+
 
 
     @Override
@@ -96,7 +96,7 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
         signIn = (SignInButton) findViewById(R.id.button2);
         signOut = (Button) findViewById(R.id.button3);
 
-        highScore = new ScoreReview();
+
 
 
         
@@ -221,7 +221,7 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
                     mGoogleApiClient.connect();
                 }
             } else {
-                //FIXME
+                //FIXME Snackbar missing something?
                 //Snackbar.make(signOut, connectionResult.getErrorMessage(), Snackbar.LENGTH_LONG).show();
             }
         }
@@ -255,6 +255,11 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
             return true;
         }
         return false;
+    }
+
+    //FIXME Passing score to leaderboard.
+    public void submitScore(long wordPerMin){
+        Games.Leaderboards.submitScore(mGoogleApiClient, getResources().getString(R.string.LEADERBOARD_ID), wordPerMin);
     }
 
 }

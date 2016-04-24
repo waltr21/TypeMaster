@@ -1,4 +1,7 @@
 <resources>
+
+    <string name="LEADERBOARD_ID">CgkI7ryyz50REAIQAQ</string>
+
     <string name="app_name">TypeMaster</string>
     <string name="minute">Minute To Win It!</string>
     <string name="subMinute">One minute to type as many words as you can.</string>
