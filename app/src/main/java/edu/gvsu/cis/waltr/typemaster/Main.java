@@ -35,7 +35,7 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
     boolean mInSignInFlow = false;
     private GoogleApiClient mGoogleApiClient;
     private static int RC_SIGN_IN = 9001;
-    private static int REQUEST_LEADERBOARD = 0;
+    private static int REQUEST_LEADERBOARD = 123;
     private CardView minuteCard, wordCard, practiceCard, scoreCard;
     private SignInButton signIn;
     private Button signOut;
@@ -153,7 +153,7 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
                 //simple if statement to check which activity to go to
                 //Possible FIXME
                 startActivityForResult(Games.Leaderboards.getLeaderboardIntent(mGoogleApiClient,
-                        "CgkI7ryyz50REAIQAQ"), (int)highScore.getScore());
+                        "CgkI7ryyz50REAIQAQ"), REQUEST_LEADERBOARD);
 
             }
         });
