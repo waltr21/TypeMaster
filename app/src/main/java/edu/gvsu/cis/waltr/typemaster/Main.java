@@ -43,6 +43,7 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
     private boolean mResolvingConnectionFailure = false;
     private boolean mAutoStartSignInFlow = true;
     private boolean mSignInClicked = false;
+    private ScoreReview highScore;
 
 
     @Override
@@ -94,6 +95,8 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
 
         signIn = (SignInButton) findViewById(R.id.button2);
         signOut = (Button) findViewById(R.id.button3);
+
+        highScore = new ScoreReview();
 
 
         
@@ -148,8 +151,9 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
             @Override
             public void onClick(View press) {
                 //simple if statement to check which activity to go to
+                //Possible FIXME
                 startActivityForResult(Games.Leaderboards.getLeaderboardIntent(mGoogleApiClient,
-                        "CgkI7ryyz50REAIQAQ"), REQUEST_LEADERBOARD);
+                        "CgkI7ryyz50REAIQAQ"), (int)highScore.getScore());
 
             }
         });

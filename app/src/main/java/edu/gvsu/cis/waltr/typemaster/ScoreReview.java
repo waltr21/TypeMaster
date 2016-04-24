@@ -78,4 +78,8 @@ public class ScoreReview extends AppCompatActivity {
         startActivity(launchScore);
     }
 
+    public double getScore(){
+        return wordsPerMinute;
+    }
+
 }
