@@ -75,7 +75,7 @@ public class ScoreReview extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         Intent launchScore = new Intent(ScoreReview.this, Main.class);
+        launchScore.putExtra("wordsPerMinute", wordsPerMinute);
         startActivity(launchScore);
     }
-
 }

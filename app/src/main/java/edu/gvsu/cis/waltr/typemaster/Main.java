@@ -9,6 +9,7 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.view.View;
@@ -16,12 +17,11 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.data.Freezable;
 import com.google.android.gms.games.Games;
 import com.google.android.gms.games.leaderboard.Leaderboard;
-
-import com.google.android.gms.common.SignInButton;
 
 
 
@@ -34,6 +34,7 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
     boolean mExplicitSignOut = false;
     boolean mInSignInFlow = false;
     private GoogleApiClient mGoogleApiClient;
+    private double wordPerMinute;
     private static int RC_SIGN_IN = 9001;
     private static int REQUEST_LEADERBOARD = 123;
     private CardView minuteCard, wordCard, practiceCard, scoreCard;
@@ -67,9 +68,9 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
         wordGame = false;
         minuteGame = false;
 
-
         LinearLayout layout = new LinearLayout(this);
         layout.setOrientation(LinearLayout.HORIZONTAL);
+
 
 
         /* If the user is not connected to the internet then they are given
@@ -88,6 +89,9 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
         }
 
 
+        Intent pull = getIntent();
+        wordPerMinute = pull.getDoubleExtra("wordPerMinute", 0.0);
+
         minuteCard = (CardView) findViewById(R.id.minute_card);
         wordCard = (CardView) findViewById(R.id.word_card);
         practiceCard = (CardView) findViewById(R.id.practice_card);
@@ -96,12 +100,7 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
         signIn = (SignInButton) findViewById(R.id.button2);
         signOut = (Button) findViewById(R.id.button3);
 
-
-
-
-        
         scoreCard.setEnabled(false);
-
 
         // Create the Google Api Client with access to Plus and Games
         mGoogleApiClient = new GoogleApiClient.Builder(getApplicationContext())
@@ -110,7 +109,6 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
                 .addApi(Games.API).addScope(Games.SCOPE_GAMES)
                 // add other APIs and scopes here as needed
                 .build();
-
 
         minuteCard.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -221,8 +219,7 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
                     mGoogleApiClient.connect();
                 }
             } else {
-                //FIXME Snackbar missing something?
-                //Snackbar.make(signOut, connectionResult.getErrorMessage(), Snackbar.LENGTH_LONG).show();
+                Snackbar.make(signOut, connectionResult.getErrorMessage(), Snackbar.LENGTH_LONG).show();
             }
         }
 
@@ -259,6 +256,7 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
 
     //FIXME Passing score to leaderboard.
     public void submitScore(long wordPerMin){
+        wordPerMin = (long) wordPerMinute;
         Games.Leaderboards.submitScore(mGoogleApiClient, getResources().getString(R.string.LEADERBOARD_ID), wordPerMin);
     }
 
