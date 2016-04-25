@@ -47,7 +47,10 @@
 
     <string name="min_word_length">Mindestwortlänge:</string>
     <string name="max_word_length">Maximale Wortlänge:</string>
-
+    <string name="app_id">592066682478</string>
+    <string name="leaderboard_wpm">CgkI7ryyz50REAIQAQ</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="signin_other_error">Error...</string>
 
 
 </resources>
