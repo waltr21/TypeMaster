@@ -41,6 +41,8 @@ public class MinuteActivity extends AppCompatActivity implements Callback<List<W
     public double startTime, endTime, elapsedMilliSeconds, elapsedSeconds;
     CountDownTimer cT;
 
+    private final int scoreActivityThing = 10;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,8 +115,8 @@ public class MinuteActivity extends AppCompatActivity implements Callback<List<W
     public void onBackPressed() {
         if (!alertOpen && !wordGame)
         timer.cancel();
-        Intent launchMain = new Intent(MinuteActivity.this, Main.class);
-        startActivity(launchMain);
+        setResult(RESULT_OK);
+        finish();
     }
 
     @Override
@@ -124,15 +126,6 @@ public class MinuteActivity extends AppCompatActivity implements Callback<List<W
             timer.cancel();
         }
         stopped = true;
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if (stopped) {
-            Intent launchMain = new Intent(MinuteActivity.this, Main.class);
-            startActivity(launchMain);
-        }
     }
 
     public void compare() {
@@ -243,9 +236,25 @@ public class MinuteActivity extends AppCompatActivity implements Callback<List<W
                     launchScore.putExtra("totalWords", totalWords);
                     launchScore.putExtra("minuteGame", minuteGame);
                     launchScore.putExtra("wordGame", wordGame);
-                    startActivity(launchScore);
+                    startActivityForResult(launchScore, scoreActivityThing);
+                    //finish();
                 }
             }, 60000);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(resultCode == RESULT_OK){
+            if(requestCode == scoreActivityThing){
+                double wordPerMin  = data.getDoubleExtra("passingLeaderboard", 0.0);
+                Intent passLeaderboard = new Intent();
+                passLeaderboard.putExtra("passingLeaderboard", wordPerMin);
+                setResult(RESULT_OK, passLeaderboard);
+                finish();
+            }
+        } else {
+            super.onActivityResult(requestCode, resultCode, data);
         }
     }
 }

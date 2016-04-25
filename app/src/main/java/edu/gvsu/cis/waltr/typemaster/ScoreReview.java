@@ -64,10 +64,10 @@ public class ScoreReview extends AppCompatActivity {
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View press) {
-                //simple if statement to check which activity to go to
-                Intent launchMain = new Intent(ScoreReview.this, Main.class);
-                launchMain.putExtra("wordsPerMinute", wordsPerMinute);
-                startActivity(launchMain);
+                Intent passLeaderboard = new Intent();
+                passLeaderboard.putExtra("passingLeaderboard", wordsPerMinute);
+                setResult(RESULT_OK, passLeaderboard);
+                finish();
             }
         });
     }

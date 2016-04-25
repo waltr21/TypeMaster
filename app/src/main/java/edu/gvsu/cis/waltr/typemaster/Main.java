@@ -45,6 +45,8 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
     private boolean mAutoStartSignInFlow = true;
     private boolean mSignInClicked = false;
 
+    private final int scoreActivityThing = 10;
+
 
 
     @Override
@@ -53,6 +55,11 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
             if(mResolvingConnectionFailure){
                 mResolvingConnectionFailure = false;
                 mGoogleApiClient.connect();
+            }
+        } else if(requestCode == scoreActivityThing){
+            if(data != null) {
+                double wordPerMin = data.getDoubleExtra("passingLeaderboard", 0.0);
+                Games.Leaderboards.submitScore(mGoogleApiClient, getResources().getString(R.string.LEADERBOARD_ID), (long) wordPerMin);
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);
@@ -119,7 +126,7 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
                 Intent launchMinute = new Intent(Main.this, MinuteActivity.class);
                 launchMinute.putExtra("minuteGame", minuteGame);
                 launchMinute.putExtra("wordGame", wordGame);
-                startActivity(launchMinute);
+                startActivityForResult(launchMinute, scoreActivityThing);
             }
         });
 
@@ -148,8 +155,7 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
         scoreCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View press) {
-                //simple if statement to check which activity to go to
-                //Possible FIXME
+
                 startActivityForResult(Games.Leaderboards.getLeaderboardIntent(mGoogleApiClient,
                         "CgkI7ryyz50REAIQAQ"), REQUEST_LEADERBOARD);
 
@@ -167,6 +173,7 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
         signOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View press) {
+                scoreCard.setEnabled(false);
                 mSignInClicked = false;
                 if(mGoogleApiClient.isConnected()){
                     Games.signOut(mGoogleApiClient);
@@ -252,12 +259,6 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
             return true;
         }
         return false;
-    }
-
-    //FIXME Passing score to leaderboard.
-    public void submitScore(long wordPerMin){
-        wordPerMin = (long) wordPerMinute;
-        Games.Leaderboards.submitScore(mGoogleApiClient, getResources().getString(R.string.LEADERBOARD_ID), wordPerMin);
     }
 
 }
