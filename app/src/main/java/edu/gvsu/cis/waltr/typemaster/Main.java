@@ -34,7 +34,7 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
     boolean mExplicitSignOut = false;
     boolean mInSignInFlow = false;
     private GoogleApiClient mGoogleApiClient;
-    private double wordPerMinute;
+    //private double wordPerMinute;
     private static int RC_SIGN_IN = 9001;
     private static int REQUEST_LEADERBOARD = 123;
     private CardView minuteCard, wordCard, practiceCard, scoreCard;
@@ -96,8 +96,8 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
         }
 
 
-        Intent pull = getIntent();
-        wordPerMinute = pull.getDoubleExtra("wordPerMinute", 0.0);
+        //Intent pull = getIntent();
+        //wordPerMinute = pull.getDoubleExtra("wordPerMinute", 0.0);
 
         minuteCard = (CardView) findViewById(R.id.minute_card);
         wordCard = (CardView) findViewById(R.id.word_card);
@@ -255,7 +255,7 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
         NetworkInfo networkInfo = cm.getActiveNetworkInfo();
         // if no network is available networkInfo will be null
         // otherwise check if we are connected
-        if (networkInfo != null && networkInfo.isConnected()) {
+        if(networkInfo != null && networkInfo.isConnected()) {
             return true;
         }
         return false;
