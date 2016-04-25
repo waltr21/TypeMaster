@@ -165,6 +165,7 @@ public class MinuteActivity extends AppCompatActivity implements Callback<List<W
                 launchScore.putExtra("wordGame", wordGame);
                 launchScore.putExtra("time", elapsedSeconds);
                 startActivity(launchScore);
+                finish();
             }
         }
         generateWord();
