@@ -72,6 +72,7 @@ public class PopUp extends Activity {
                 launchWord.putExtra("minuteGame", minuteGame);
                 launchWord.putExtra("wordGame", wordGame);
                 startActivity(launchWord);
+                finish();
             }
         });
     }
