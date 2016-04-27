@@ -113,10 +113,28 @@ public class MinuteActivity extends AppCompatActivity implements Callback<List<W
 
     @Override
     public void onBackPressed() {
-        if (!alertOpen && !wordGame)
-        timer.cancel();
-        setResult(RESULT_OK);
-        finish();
+        new AlertDialog.Builder(MinuteActivity.this)
+                .setTitle("Save Game?")
+                .setMessage("Would you like to save the game state? Press OK to save and return to the main menu."
+                        + " Press CANCEL to return to the main menu.")
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        //FIXME in this section of code we will save the game.
+                        if (!alertOpen && !wordGame)
+                            timer.cancel();
+                        setResult(RESULT_OK);
+                        finish();
+                    }
+                })
+                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener(){
+                    public void onClick(DialogInterface dialog, int which) {
+                        if (!alertOpen && !wordGame)
+                            timer.cancel();
+                        setResult(RESULT_OK);
+                        finish();
+                    }
+                })
+                .show();
     }
 
     @Override
@@ -238,7 +256,6 @@ public class MinuteActivity extends AppCompatActivity implements Callback<List<W
                     launchScore.putExtra("minuteGame", minuteGame);
                     launchScore.putExtra("wordGame", wordGame);
                     startActivityForResult(launchScore, scoreActivityThing);
-                    //finish();
                 }
             }, 60000);
         }
