@@ -74,8 +74,9 @@ public class ScoreReview extends AppCompatActivity {
     //Handles the back button so the user cant go back into typing
     @Override
     public void onBackPressed() {
-        Intent launchScore = new Intent(ScoreReview.this, Main.class);
-        launchScore.putExtra("wordsPerMinute", wordsPerMinute);
-        startActivity(launchScore);
+        Intent passLeaderboard = new Intent();
+        passLeaderboard.putExtra("passingLeaderboard", wordsPerMinute);
+        setResult(RESULT_OK, passLeaderboard);
+        finish();
     }
 }

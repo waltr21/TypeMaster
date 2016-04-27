@@ -54,7 +54,7 @@ public class MinuteActivity extends AppCompatActivity implements Callback<List<W
 
         //Opens the instructions on launch.
         alert();
-        alertOpen =  true;
+        alertOpen = true;
 
         Intent pull = getIntent();
         wordGame = pull.getBooleanExtra("wordGame", false);
@@ -87,7 +87,7 @@ public class MinuteActivity extends AppCompatActivity implements Callback<List<W
         spaceCheck();
     }
 
-    //Calls the service method to geet a random word
+    //Calls the service method to get a random word
     public void generateWord() {
         service.getWordAsync(true, 0, -1, 1, -1, 3, 7, 1,
                 "a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5", this);
@@ -99,8 +99,8 @@ public class MinuteActivity extends AppCompatActivity implements Callback<List<W
         for (Word w : words) {
             wordString = w.word;
         }
-        //avoids a weird word with a space in it...
-        while (wordString.contains(" ")){
+        //avoids a weird word with a space in it or a dash...
+        while (wordString.contains(" ") || wordString.contains("-")){
             generateWord();
         }
         randomWord.setText(wordString.toUpperCase());

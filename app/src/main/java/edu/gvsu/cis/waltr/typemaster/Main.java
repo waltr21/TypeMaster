@@ -34,7 +34,6 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
     boolean mExplicitSignOut = false;
     boolean mInSignInFlow = false;
     private GoogleApiClient mGoogleApiClient;
-    //private double wordPerMinute;
     private static int RC_SIGN_IN = 9001;
     private static int REQUEST_LEADERBOARD = 123;
     private CardView minuteCard, wordCard, practiceCard, scoreCard;
