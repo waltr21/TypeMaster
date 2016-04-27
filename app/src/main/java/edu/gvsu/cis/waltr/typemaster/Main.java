@@ -94,10 +94,6 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
                     .show();
         }
 
-
-        //Intent pull = getIntent();
-        //wordPerMinute = pull.getDoubleExtra("wordPerMinute", 0.0);
-
         minuteCard = (CardView) findViewById(R.id.minute_card);
         wordCard = (CardView) findViewById(R.id.word_card);
         practiceCard = (CardView) findViewById(R.id.practice_card);
