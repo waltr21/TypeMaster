@@ -1,5 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_id">592066682478</string>
-    <string name="leaderboard_wpm">CgkI7ryyz50REAIQAQ</string>
+    <string name="app_id" translatable="false">592066682478</string>
+    <string name="leaderboard_wpm" translatable="false">CgkI7ryyz50REAIQAQ</string>
+
+    <string name="app_name">TypeMaster</string>
+    <string name="minute">Minute To Win It!</string>
+    <string name="subMinute">One minute to type as many words as you can.</string>
+    <string name="howMany">How Many Words?</string>
+    <string name="subhowMany">You choose how many words you want to type. We keep track of the time.</string>
+    <string name="practice">Practice</string>
+
+    <string name="sign_in">Sign in</string>
+    <string name="sign_out">Sign out</string>
+
+    <string name="highScoreSub">View the best times of you and your friends.</string>
+    <string name="high_score">High Score</string>
+    <string name="practice_sub">Practice letters that you have trouble typing with. No time is recorded.</string>
+
+    <string name="lang">English</string>
+
+    <string name="signin_other_error">Error...</string>
+
+    <string name="how_to">How to:</string>
+    <string name="how_to_message">Welcome to our game! Type the words that will randomly appear as fast as you can.
+        To submit your word, press the space bar. To skip a word, double tap the space bar.
+        (Skipped words will count as an error towards your score review)</string>
+
+    <string name="connect">Connect to the internet</string>
+    <string name="connect_msg">We have detected that you are not connected to the internet.
+        This app requires a stable internet connection at all times. Please come
+        back when you are connected!</string>
+
+    <string name="total_time">Total Time:</string>
+    <string name="num_of_errors">Number of Errors:</string>
+    <string name="words_per_min">Words per Minute:</string>
+    <string name="error_doesnt_count">(Errors dont count towards total score)</string>
+
+    <string name="sixty_seconds">60 seconds</string>
+    <string name="num_errors">Num Errors</string>
+    <string name="wpm">WPM</string>
+    <string name="num_correct">Number Correct:</string>
+
+
+
+    <string name="num_right">Num Right</string>
+    <string name="words_seen">Total Words Seen:</string>
+    <string name="num_seen">numSeen</string>
+
+
+    <string name="min_word_length">Minimum word length:</string>
+    <string name="max_word_length">Maximum word length:</string>
+    <string name="title_activity_main2">Main2Activity</string>
 </resources>

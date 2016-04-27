@@ -58,7 +58,7 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
         } else if(requestCode == scoreActivityThing){
             if(data != null) {
                 double wordPerMin = data.getDoubleExtra("passingLeaderboard", 0.0);
-                Games.Leaderboards.submitScore(mGoogleApiClient, getResources().getString(R.string.LEADERBOARD_ID), (long) wordPerMin);
+                Games.Leaderboards.submitScore(mGoogleApiClient, getResources().getString(R.string.leaderboard_wpm), (long) wordPerMin);
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);
@@ -103,6 +103,9 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
         signOut = (Button) findViewById(R.id.button3);
 
         scoreCard.setEnabled(false);
+
+
+
 
         // Create the Google Api Client with access to Plus and Games
         mGoogleApiClient = new GoogleApiClient.Builder(getApplicationContext())
