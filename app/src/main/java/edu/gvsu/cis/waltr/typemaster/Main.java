@@ -12,6 +12,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -19,11 +20,11 @@ import android.widget.LinearLayout;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.common.data.Freezable;
 import com.google.android.gms.games.Games;
 import com.google.android.gms.games.leaderboard.Leaderboard;
-
-
+import com.google.android.gms.games.leaderboard.Leaderboards;
 
 
 public class Main extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks,
@@ -50,6 +51,9 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(resultCode != RESULT_OK){
+            Log.d("hunter", "onActivityResult: ");
+        }
         if(requestCode == RC_SIGN_IN){
             if(mResolvingConnectionFailure){
                 mResolvingConnectionFailure = false;
@@ -57,12 +61,15 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
             }
         } else if(requestCode == scoreActivityThing){
             if(data != null) {
+                PendingResult<Leaderboards.SubmitScoreResult> result;
                 double wordPerMin = data.getDoubleExtra("passingLeaderboard", 0.0);
-                Games.Leaderboards.submitScore(mGoogleApiClient, getResources().getString(R.string.leaderboard_wpm), (long) wordPerMin);
+                result = Games.Leaderboards.submitScoreImmediate(mGoogleApiClient,
+                        getResources().getString(R.string.leaderboard_wpm), (long) wordPerMin);
+                Log.d("Hunter", "onActivityResult: ");
             }
-        } else {
+        } /**else {
             super.onActivityResult(requestCode, resultCode, data);
-        }
+        }*/
     }
 
 
@@ -74,8 +81,8 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
         wordGame = false;
         minuteGame = false;
 
-        LinearLayout layout = new LinearLayout(this);
-        layout.setOrientation(LinearLayout.HORIZONTAL);
+        //LinearLayout layout = new LinearLayout(this);
+        //layout.setOrientation(LinearLayout.HORIZONTAL);
 
 
 
@@ -155,7 +162,7 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
             public void onClick(View press) {
 
                 startActivityForResult(Games.Leaderboards.getLeaderboardIntent(mGoogleApiClient,
-                        "CgkI7ryyz50REAIQAQ"), REQUEST_LEADERBOARD);
+                        getResources().getString(R.string.leaderboard_wpm)), REQUEST_LEADERBOARD);
 
             }
         });
